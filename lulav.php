@@ -4,6 +4,8 @@ Plugin Name:    Lulav
 Version:        Developing
 */
 
+const LULAV_TABLE_NAME = 'lulav';
+
 include(plugin_dir_path(__FILE__) . 'includes/shortcode.php');
 include(plugin_dir_path(__FILE__) . 'admin/all.php');
 include(plugin_dir_path(__FILE__) . 'admin/add.php');
@@ -17,7 +19,7 @@ function lulav_activate()
     $prefix = $wpdb->prefix;
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $prefix`lulav` (
+    $sql = "CREATE TABLE $prefix" . LULAV_TABLE_NAME . " (
   id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR NOT NULL,
   UNIQUE KEY id (id)) $charset_collate;";
@@ -62,6 +64,7 @@ function lulav_render( $tpl, $data = array()) {
         $output = ob_get_contents();
         ob_end_clean();
     } else {
+        echo 'error';
         // TODO: Throw error.
     }
 

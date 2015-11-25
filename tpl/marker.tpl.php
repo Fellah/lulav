@@ -1,7 +1,20 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: fellah
- * Date: 11/25/15
- * Time: 5:36 PM
- */
+<div class="wrap">
+    <h1><?php echo $title?></h1>
+    <form name="lulav" action="" method="post" autocomplete="off">
+
+        <div id="titlediv">
+            <div id="titlewrap">
+                <label class="screen-reader-text" id="title-prompt-text" for="title">Enter marker title here</label>
+                <input type="text" name="title" value="" id="title" spellcheck="true" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- <div id="postdivrich" class="postarea wp-editor-expand">
+            <?php //wp_editor(); ?>
+        </div> -->
+
+        <?php submit_button( 'Submit' ); ?>
+
+    </form>
+
+</div>
