@@ -16,17 +16,22 @@ function lulav_activate()
 {
     global $wpdb;
 
-    $prefix = $wpdb->prefix;
+    $table_name = $wpdb->prefix . LULAV_TABLE_NAME;
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $prefix" . LULAV_TABLE_NAME . " (
-  id INT NOT NULL AUTO_INCREMENT,
-  title VARCHAR NOT NULL,
-  UNIQUE KEY id (id)) $charset_collate;";
+	$sql = "CREATE TABLE $table_name (
+		id INT NOT NULL AUTO_INCREMENT,
+		title VARCHAR(255) NOT NULL,
+		lat FLOAT(10,6) NOT NULL,
+		lng FLOAT(10,6) NOT NULL,
+		description text NOT NULL,
+		UNIQUE KEY id (id)
+	) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    dbDelta($sql);
+	// TODO: Check result.
+    $res = dbDelta($sql);
 }
 
 add_action( 'wp_enqueue_scripts', 'lulav_assets' );
@@ -41,16 +46,59 @@ function lulav_assets() {
 add_shortcode('lulav', 'lulav_shortcode' );
 
 function lulav_shortcode() {
-    return lulav_render( 'tpl/shortcode.tpl.php' );
+	global $wpdb;
+
+	$data = array( 'marks' => array() );
+
+	$marks = $wpdb->get_results("
+    SELECT id, title, lng, lat, description
+	FROM " . $wpdb->prefix . LULAV_TABLE_NAME);
+
+	foreach ( $marks as $mark ) {
+		$data['marks'][] = array(
+			'id' => $mark->id,
+			'title' => $mark->title,
+			'lat' => $mark->lat,
+			'lng' => $mark->lng,
+			'description' => $mark->description,
+		);
+	}
+
+    return lulav_render( 'tpl/shortcode.tpl.php', $data );
 }
 
 add_action('admin_menu', 'lulav_add_admin_menu_pages');
 
 function lulav_add_admin_menu_pages()
 {
-    add_menu_page('Lulav: Page Title ', 'Lulav', 'administrator', __FILE__, 'lulav_all_markers');
-    add_submenu_page( __FILE__, 'Lulav: Page Title', 'All Marks','administrator', __FILE__, 'lulav_all_markers');
-    add_submenu_page( __FILE__, 'Lulav: Page Title', 'Add New','administrator', __FILE__ . '_add', 'lulav_add_marker');
+	add_menu_page('Lulav: Page Title ', 'Lulav', 'administrator', 'lulav', 'lulav_all_markers');
+	add_submenu_page( 'lulav', 'Lulav: Page Title', 'All Marks','administrator', 'lulav', 'lulav_all_markers');
+	add_submenu_page( 'lulav', 'Lulav: Page Title', 'Add New','administrator', 'lulav_add', 'lulav_add_marker');
+}
+
+//function lulav_actions() {
+	if (!empty($_REQUEST['action'])) {
+		$id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+
+		switch ($_REQUEST['action']) {
+			case 'delete':
+				lulav_delete($id);
+				break;
+			default:
+				break;
+		}
+	}
+//}
+
+function lulav_delete($id) {
+	global $wpdb;
+
+	$prefix = $wpdb->prefix;
+	$prefix . LULAV_TABLE_NAME;
+
+	$wpdb->delete( $prefix . LULAV_TABLE_NAME, array( 'id' => $id ), array( '%d' ) );
+
+
 }
 
 function lulav_render( $tpl, $data = array()) {

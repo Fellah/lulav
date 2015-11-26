@@ -1,6 +1,6 @@
 <div class="wrap">
     <h1><?php echo $title?></h1>
-    <form name="lulav" action="" method="post" autocomplete="off">
+    <form name="lulav" action="" method="post" enctype="multipart/form-data" autocomplete="off">
 
         <div id="titlediv">
             <div id="titlewrap">
@@ -9,9 +9,19 @@
             </div>
         </div>
 
-        <!-- <div id="postdivrich" class="postarea wp-editor-expand">
-            <?php //wp_editor(); ?>
-        </div> -->
+	    <div class="postbox">
+	        <label for="lat">Latitude</label>
+	        <input type="text" name="lat" value="" />
+		    <label for="lng">Longitude</label>
+		    <input type="text" name="lng" value="" />
+	    </div>
+
+	    <?php wp_editor( '', 'description', array('media_buttons' => false) ); ?>
+
+	    <!-- <div class="postbox">
+		    <label for="file">Image</label>
+	        <input type="file" name="image" multiple="false" />
+	    </div> -->
 
         <?php submit_button( 'Submit' ); ?>
 

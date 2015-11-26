@@ -1,29 +1,32 @@
 <?php
 
 function lulav_add_marker() {
-    if (!empty($_REQUEST['submit'])) {
-        global $wpdb;
+	global $wpdb;
+	$table_name = $wpdb->prefix . LULAV_TABLE_NAME;
 
-        $res = $wpdb->insert(
-            LULAV_TABLE_NAME,
-            array(
-                'title' => $_REQUEST['title'],
-            ),
-            array(
-                '%s',
-            )
-        );
+	if (!empty($_REQUEST['submit'])) {
+		$res = $wpdb->insert(
+			$table_name,
+			array(
+				'title' => $_REQUEST['title'],
+				'lat' => $_REQUEST['lat'],
+				'lng' => $_REQUEST['lng'],
+				'description' => $_REQUEST['description'],
+			),
+			array(
+				'%s',
+				'%.06lf',
+				'%.06lf',
+				'%s',
+			)
+		);
 
-        echo $res;
-
-        $id = $wpdb->insert_id;
-
-        echo $id;
-    }
+		$id = $wpdb->insert_id;
+	}
 
     $data = array(
         'title' => 'Add',
-        'action' => plugin_dir_url(__FILE__) . 'admin/post.php'
+        'action' => admin_url('admin.php?page=lulav&action=edit'),
     );
     echo lulav_render('tpl/marker.tpl.php', $data);
 }
