@@ -50,16 +50,74 @@ function register_cpt_music_review() {
 	register_post_type( 'music_review', $args );
 }
 
+// register_activation_hook(__FILE__, 'lulav_activate');
 add_action( 'init', 'register_cpt_music_review' );
+
+add_action( 'wp_enqueue_scripts', 'lulav_assets' );
+
+function lulav_assets() {
+	wp_enqueue_script( 'jquery-ui-core' );
+	wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js' );
+	wp_enqueue_script( 'lulav', plugin_dir_url( __FILE__ ) . 'js/lulav.js', array( 'jquery', 'jquery-ui-core' ) );
+	wp_enqueue_style( 'lulav', plugin_dir_url( __FILE__ ) . 'css/lulav.css' );
+}
 
 function lulav_shortcode() {
 	$posts = get_posts( array(
+		'numberposts' => - 1,
 		'orderby'     => 'rand',
 		'post_type'   => 'music_review',
 		'post_status' => 'publish',
 	) );
 
-	return 'LULAV';
+	$data = array(
+		'markers'     => array(),
+		'collections' => array(),
+	);
+
+	$collection = array();
+	$row        = array();
+	foreach ( $posts as $post ) {
+		$custom = get_post_custom( $post->ID );
+
+		$thumbnail = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
+
+		$data['markers'][] = array(
+			'title'       => $post->post_title,
+			'description' => $post->post_content,
+			'coordinates' => ! empty( $custom['Coordinates'][0] ) ? $custom['Coordinates'][0] : '',
+			'$thumbnail'  => $thumbnail,
+		);
+
+		$row[] = array(
+			'title'       => $post->post_title,
+			'description' => $post->post_content,
+			'coordinates' => ! empty( $custom['Coordinates'][0] ) ? $custom['Coordinates'][0] : '',
+			'thumbnail'   => $thumbnail,
+		);
+
+		if ( sizeof( $row ) == 3 ) {
+			$collection[] = $row;
+			$row          = array();
+		}
+
+		if ( sizeof( $collection ) == 3 ) {
+			$data['collections'][] = $collection;
+			$collection            = array();
+		}
+	}
+
+	if ( ! empty( $row ) ) {
+		$collection[] = $row;
+	}
+
+	if ( ! empty( $collection ) ) {
+		$data['collections'][] = $collection;
+	}
+
+	$output = lulav_render( 'tpl/shortcode.tpl.php', $data );
+
+	return $output;
 }
 
 add_shortcode( 'lulav', 'lulav_shortcode' );
