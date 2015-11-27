@@ -83,6 +83,7 @@ function lulav_shortcode() {
 		$thumbnail = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
 
 		$data['markers'][] = array(
+			'id'          => $post->ID,
 			'title'       => $post->post_title,
 			'description' => $post->post_content,
 			'coordinates' => ! empty( $custom['Coordinates'][0] ) ? $custom['Coordinates'][0] : '',
@@ -90,6 +91,7 @@ function lulav_shortcode() {
 		);
 
 		$row[] = array(
+			'id'          => $post->ID,
 			'title'       => $post->post_title,
 			'description' => $post->post_content,
 			'coordinates' => ! empty( $custom['Coordinates'][0] ) ? $custom['Coordinates'][0] : '',

@@ -3,7 +3,7 @@
 
 	<ul>
 		<?php foreach ( $markers as $marker ): ?>
-			<li>
+			<li data-id="<?php echo $marker['id']; ?>">
 				<?php echo $marker['title']; ?>
 				<div data-coordinates="<?php echo $marker['coordinates']; ?>">
 					<?php echo $marker['description']; ?>
@@ -17,7 +17,9 @@
 			<?php foreach ( $collection as $row ): ?>
 				<div>
 					<?php foreach ( $row as $cell ): ?>
-						<div class="cell" data-thumbnail="<?php echo $cell['thumbnail']; ?>">
+						<div class="cell"
+						     data-id="<?php echo $cell['id']; ?>"
+						     data-thumbnail="<?php echo $cell['thumbnail']; ?>">
 						</div>
 					<?php endforeach; ?>
 				</div>

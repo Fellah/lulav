@@ -20,4 +20,9 @@
     height: 128px;
     background-position: center;
     border: 1px solid #EEE;
+    cursor: pointer;
+}
+
+.lulav .thumbnails .cell.active {
+    border: 1px solid #e8776f;
 }
