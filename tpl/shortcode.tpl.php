@@ -10,7 +10,7 @@
 
 	<div class="carousel">
 		<?php foreach ( $collections as $collection ): ?>
-			<div class="thumbnails">
+			<div class="collection">
 				<?php foreach ( $collection as $row ): ?>
 					<div class="line">
 						<?php foreach ( $row as $cell ): ?>

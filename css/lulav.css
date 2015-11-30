@@ -24,7 +24,7 @@
     overflow: hidden;
 }
 
-.lulav .carousel .thumbnails {
+.lulav .carousel .collection {
     position: absolute;
     z-index: 0;
     width: 100%;
@@ -32,13 +32,13 @@
     display: none;
     background-color: #FFF;
 }
-/*.lulav .carousel .thumbnails:first-child,*/
-.lulav .carousel .thumbnails.active,
-.lulav .carousel .thumbnails.animation {
+/*.lulav .carousel .collection:first-child,*/
+.lulav .carousel .collection.active,
+.lulav .carousel .collection.animation {
     display: block;
 }
 
-.lulav .carousel .thumbnails .line .cell {
+.lulav .carousel .collection .line .cell {
     position: relative;
     float: left;
     width: 33%;
@@ -49,18 +49,18 @@
     border-top: 0.5em solid #FFF;
 
 }
-.lulav .carousel .thumbnails .line:first-child .cell {
+.lulav .carousel .collection .line:first-child .cell {
     border-top: none;
 }
 
-.lulav .carousel .thumbnails .cell .border {
+.lulav .carousel .collection .cell .border {
     position: absolute;
     border: 6px solid #FFF;
     width: 100%;
     height: 100%;
 }
 
-.lulav .carousel .thumbnails .cell .select {
+.lulav .carousel .collection .cell .select {
     position: absolute;
     border: 6px solid #E8776F;
     width: 100%;

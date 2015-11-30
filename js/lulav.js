@@ -44,7 +44,7 @@ function initialize() {
 
             var next = cell.parents('.thumbnails');
             if (!next.hasClass('active')) {
-                var collection = jQuery('.lulav .carousel .thumbnails.active');
+                var collection = jQuery('.lulav .carousel .collection.active');
 
                 console.log(next);
                 console.log(collection);
@@ -71,7 +71,7 @@ function initialize() {
         });
     });
 
-    jQuery('.lulav .thumbnails .cell').each(function () {
+    jQuery('.lulav .collection .cell').each(function () {
         var cell = jQuery(this);
 
         var thumbnail = cell.data('thumbnail');
@@ -81,7 +81,7 @@ function initialize() {
         }
     });
 
-    jQuery('.lulav .thumbnails .cell').click(function () {
+    jQuery('.lulav .collection .cell').click(function () {
         var cell = jQuery(this);
         var id = cell.data('id');
         var select = jQuery(document.createElement('div')).addClass('select');
@@ -99,13 +99,13 @@ function initialize() {
 }
 
 jQuery(document).ready(function() {
-    jQuery('.lulav .carousel .thumbnails:first').addClass('active');
+    jQuery('.lulav .carousel .collection:first').addClass('active');
 
     jQuery('.lulav .left').click(function () {
-        var collection = jQuery('.lulav .carousel .thumbnails.active');
+        var collection = jQuery('.lulav .carousel .collection.active');
         var next = collection.prev();
         if (!next.length) {
-            next = jQuery('.lulav .carousel .thumbnails:last');
+            next = jQuery('.lulav .carousel .collection:last');
         }
 
         next.addClass('animation');
@@ -123,10 +123,10 @@ jQuery(document).ready(function() {
     });
 
     jQuery('.lulav .right').click(function () {
-        var collection = jQuery('.lulav .carousel .thumbnails.active');
+        var collection = jQuery('.lulav .carousel .collection.active');
         var next = collection.next();
         if (!next.length) {
-            next = jQuery('.lulav .carousel .thumbnails:first');
+            next = jQuery('.lulav .carousel .collection:first');
         }
 
         next.addClass('animation');
