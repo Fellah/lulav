@@ -12,7 +12,7 @@
 		<?php foreach ( $collections as $collection ): ?>
 			<div class="thumbnails">
 				<?php foreach ( $collection as $row ): ?>
-					<div>
+					<div class="row">
 						<?php foreach ( $row as $cell ): ?>
 							<div class="cell"
 							     data-id="<?php echo $cell['id']; ?>"

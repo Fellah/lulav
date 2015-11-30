@@ -38,17 +38,33 @@
     display: block;
 }
 
-.lulav .carousel .thumbnails .cell {
+.lulav .carousel .thumbnails .row .cell {
+    position: relative;
     float: left;
     width: 33%;
     height: 172px;
     background-position: center;
     cursor: pointer;
+    border-left: 0.5em solid #FFF;
+    border-top: 0.5em solid #FFF;
+
+}
+.lulav .carousel .thumbnails .row:first-child .cell {
+    border-top: none;
+}
+
+.lulav .carousel .thumbnails .cell .border {
+    position: absolute;
+    border: 6px solid #FFF;
+    width: 100%;
+    height: 100%;
 }
 
 .lulav .carousel .thumbnails .cell .select {
     position: absolute;
     border: 6px solid #E8776F;
+    width: 100%;
+    height: 100%;
 }
 
 .entry-content {
