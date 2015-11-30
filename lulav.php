@@ -67,7 +67,7 @@ function lulav_shortcode() {
 	$posts = get_posts( array(
 		'numberposts' => - 1,
 		'orderby'     => 'rand',
-		'post_type'   => 'music_review',
+		'post_type'   => 'lulav',
 		'post_status' => 'publish',
 	) );
 

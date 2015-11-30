@@ -1,4 +1,8 @@
 <div class="lulav">
+<!--	<a href="#" class="left">&lt;</a> - <a href="#" class="right">&gt;</a>
+
+	<br />-->
+
 	<div class="map"></div>
 
 	<ul>
