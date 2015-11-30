@@ -38,7 +38,7 @@
     display: block;
 }
 
-.lulav .carousel .thumbnails .row .cell {
+.lulav .carousel .thumbnails .line .cell {
     position: relative;
     float: left;
     width: 33%;
@@ -49,7 +49,7 @@
     border-top: 0.5em solid #FFF;
 
 }
-.lulav .carousel .thumbnails .row:first-child .cell {
+.lulav .carousel .thumbnails .line:first-child .cell {
     border-top: none;
 }
 
