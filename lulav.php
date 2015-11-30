@@ -5,26 +5,26 @@
  * Version: Developing
  */
 
-function register_cpt_music_review() {
+function lulav_markers() {
 	$labels = array(
-		'name'               => _x( 'Music Reviews', 'music_review' ),
-		'singular_name'      => _x( 'Music Reviews', 'music_review' ),
-		'add_new'            => _x( 'Add New', 'music_review' ),
-		'add_new_item'       => _x( 'Add New Music Review', 'music_review' ),
-		'edit_item'          => _x( 'Edit Music Review', 'music_review' ),
-		'new_item'           => _x( 'New Music Review', 'music_review' ),
-		'view_item'          => _x( 'View Music Review', 'music_review' ),
-		'search_item'        => _x( 'Search Music Reviews', 'music_review' ),
-		'not_found'          => _x( 'No music reviews found', 'music_review' ),
-		'not_found_in_trash' => _x( 'No music reviews found in Trash', 'music_review' ),
-		'parent_item_colon'  => _x( 'Parent Music Review', 'music_review' ),
-		'menu_name'          => _x( 'Music Review', 'music_review' ),
+		'name'               => _x( 'Lulav', 'lulav' ),
+		'singular_name'      => _x( 'Lulav', 'lulav' ),
+		'add_new'            => _x( 'Add New', 'lulav' ),
+		'add_new_item'       => _x( 'Add New Marker', 'lulav' ),
+		'edit_item'          => _x( 'Edit Marker', 'lulav' ),
+		'new_item'           => _x( 'New Marker', 'lulav' ),
+		'view_item'          => _x( 'View Marker', 'lulav' ),
+		'search_item'        => _x( 'Search Marker', 'lulav' ),
+		'not_found'          => _x( 'No marker found', 'lulav' ),
+		'not_found_in_trash' => _x( 'No marker found in Trash', 'lulav' ),
+		'parent_item_colon'  => _x( 'Parent Marker', 'lulav' ),
+		'menu_name'          => _x( 'Lulav', 'lulav' ),
 	);
 
 	$args = array(
 		'labels'              => $labels,
 		'hierarchical'        => false,
-		'description'         => 'Music reviews filterable by genre',
+		'description'         => 'Google maps markers',
 		'supports'            => array(
 			'title',
 			'editor',
@@ -47,18 +47,19 @@ function register_cpt_music_review() {
 		'capability_type'     => 'post',
 	);
 
-	register_post_type( 'music_review', $args );
+	register_post_type( 'lulav', $args );
 }
 
 // register_activation_hook(__FILE__, 'lulav_activate');
-add_action( 'init', 'register_cpt_music_review' );
+add_action( 'init', 'lulav_markers' );
 
 add_action( 'wp_enqueue_scripts', 'lulav_assets' );
 
 function lulav_assets() {
 	wp_enqueue_script( 'jquery-ui-core' );
+	wp_enqueue_script( 'jquery-ui-widget' );
 	wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js' );
-	wp_enqueue_script( 'lulav', plugin_dir_url( __FILE__ ) . 'js/lulav.js', array( 'jquery', 'jquery-ui-core' ) );
+	wp_enqueue_script( 'lulav', plugin_dir_url( __FILE__ ) . 'js/lulav.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget' ) );
 	wp_enqueue_style( 'lulav', plugin_dir_url( __FILE__ ) . 'css/lulav.css' );
 }
 

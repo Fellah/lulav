@@ -1,6 +1,6 @@
 .lulav .map {
-    /* float: left;
-    width: 50%; */
+    float: left;
+    width: 50%;
     height: 516px;
 }
 
@@ -9,20 +9,26 @@
 }
 
 .lulav .thumbnails {
+    folat: left;
     margin: 8px auto;
-    width: 100%;
+    width: 50%;
     height: 516px;
 }
 
 .lulav .thumbnails .cell {
+    position: relative;
     float: left;
     width: 33%;
     height: 128px;
     background-position: center;
-    border: 1px solid #EEE;
     cursor: pointer;
 }
 
-.lulav .thumbnails .cell.active {
-    border: 1px solid #e8776f;
+.lulav .thumbnails .cell .select {
+    position: absolute;
+    border: 6px solid #e8776f;
+}
+
+.entry-content {
+    /*max-width: 95% !important;*/
 }

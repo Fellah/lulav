@@ -39,8 +39,13 @@ function initialize() {
         infoWindows[id] = infoWindow;
 
         marker.addListener('click', function () {
-            jQuery('.lulav .cell').removeClass('active');
-            jQuery('.lulav .cell[data-id="' + this.id + '"]').addClass('active');
+            var cell = jQuery('.lulav .cell[data-id="' + this.id + '"]');
+            var select = jQuery(document.createElement('div')).addClass('select');
+
+            jQuery('.lulav .cell .select').remove();
+            select.width(cell.width());
+            select.height(cell.height());
+            cell.append(select);
 
             for (var id in infoWindows) {
                 infoWindows[id].close();
@@ -62,9 +67,14 @@ function initialize() {
     jQuery('.lulav .thumbnails .cell').click(function () {
         var cell = jQuery(this);
         var id = cell.data('id');
+        var select = jQuery(document.createElement('div')).addClass('select');
 
-        jQuery('.lulav .cell').removeClass('active');
-        cell.addClass('active');
+        jQuery('.lulav .cell .select').remove();
+        select.width(cell.width());
+        select.height(cell.height());
+        cell.append(select);
+
+        //map.panTo(markers[id].getPosition());
 
         for (var i in infoWindows) {
             infoWindows[i].close();
@@ -72,3 +82,34 @@ function initialize() {
         infoWindows[id].open(map, markers[id]);
     });
 }
+
+/*
+jQuery(document).ready(function() {
+    jQuery('.lulav .left').click(function () {
+        console.log('left');
+
+        var item_width = jQuery('.lulav .carousel').outerWidth();
+        var left_indent = parseInt(jQuery('.lulav .carousel').css('left')) - item_width;
+
+        console.log(item_width);
+        console.log(left_indent);
+
+        left_indent = -600;
+
+        jQuery('.lulav .carousel').animate({'left' : left_indent},{queue:false, duration:500},function(){
+
+            //get the first list item and put it after the last list item (that's how the infinite effects is made) '
+            jQuery('.lulav .carousel div:last').after(jQuery('.lulav .carousel div:first'));
+
+            //and get the left indent to the default -210px
+            //jQuery('.lulav .carousel').css({'left' : '-210px'});
+        });
+
+        return false;
+    });
+
+    jQuery('.lulav .right').click(function () {
+        console.log('right');
+        return false;
+    });
+});*/
