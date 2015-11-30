@@ -42,6 +42,25 @@ function initialize() {
             var cell = jQuery('.lulav .cell[data-id="' + this.id + '"]');
             var select = jQuery(document.createElement('div')).addClass('select');
 
+            var next = cell.parents('.thumbnails');
+            if (!next.hasClass('active')) {
+                var collection = jQuery('.lulav .carousel .thumbnails.active');
+
+                console.log(next);
+                console.log(collection);
+
+                next.addClass('animation');
+                next.css('left', -collection.width());
+                next.css('z-index', collection.css('z-index') + 50);
+
+                next.animate({'left': 0}, 800, function() {
+                    collection.removeClass('active');
+                    next.removeClass('animation');
+                    next.addClass('active');
+                    next.css('z-index', collection.css('z-index'));
+                });
+            }
+
             jQuery('.lulav .cell .select').remove();
             select.width(cell.width());
             select.height(cell.height());
@@ -83,33 +102,48 @@ function initialize() {
     });
 }
 
-/*
 jQuery(document).ready(function() {
+    jQuery('.lulav .carousel .thumbnails:first').addClass('active');
+
     jQuery('.lulav .left').click(function () {
-        console.log('left');
+        var collection = jQuery('.lulav .carousel .thumbnails.active');
+        var next = collection.prev();
+        if (!next.length) {
+            next = jQuery('.lulav .carousel .thumbnails:last');
+        }
 
-        var item_width = jQuery('.lulav .carousel').outerWidth();
-        var left_indent = parseInt(jQuery('.lulav .carousel').css('left')) - item_width;
+        next.addClass('animation');
+        next.css('left', -collection.width());
+        next.css('z-index', collection.css('z-index') + 50);
 
-        console.log(item_width);
-        console.log(left_indent);
-
-        left_indent = -600;
-
-        jQuery('.lulav .carousel').animate({'left' : left_indent},{queue:false, duration:500},function(){
-
-            //get the first list item and put it after the last list item (that's how the infinite effects is made) '
-            jQuery('.lulav .carousel div:last').after(jQuery('.lulav .carousel div:first'));
-
-            //and get the left indent to the default -210px
-            //jQuery('.lulav .carousel').css({'left' : '-210px'});
+        next.animate({'left': 0}, 800, function() {
+            collection.removeClass('active');
+            next.removeClass('animation');
+            next.addClass('active');
+            next.css('z-index', collection.css('z-index'));
         });
 
         return false;
     });
 
     jQuery('.lulav .right').click(function () {
-        console.log('right');
+        var collection = jQuery('.lulav .carousel .thumbnails.active');
+        var next = collection.next();
+        if (!next.length) {
+            next = jQuery('.lulav .carousel .thumbnails:first');
+        }
+
+        next.addClass('animation');
+        next.css('left', collection.width());
+        next.css('z-index', collection.css('z-index') + 50);
+
+        next.animate({'left': 0}, 800, function() {
+            collection.removeClass('active');
+            next.removeClass('animation');
+            next.addClass('active');
+            next.css('z-index', collection.css('z-index'));
+        });
+
         return false;
     });
-});*/
+});

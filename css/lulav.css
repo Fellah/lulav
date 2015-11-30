@@ -1,3 +1,11 @@
+.lulav .controls {
+    text-align: right;
+}
+.lulav .controls a {
+    color: #000;
+    text-decoration: none;
+}
+
 .lulav .map {
     float: left;
     width: 50%;
@@ -8,27 +16,41 @@
     display: none;
 }
 
-.lulav .thumbnails {
-    folat: left;
-    margin: 8px auto;
-    width: 50%;
-    height: 516px;
-}
-
-.lulav .thumbnails .cell {
+.lulav .carousel {
     position: relative;
     float: left;
+    width: 50%;
+    height: 516px;
+    overflow: hidden;
+}
+
+.lulav .carousel .thumbnails {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #FFF;
+}
+/*.lulav .carousel .thumbnails:first-child,*/
+.lulav .carousel .thumbnails.active,
+.lulav .carousel .thumbnails.animation {
+    display: block;
+}
+
+.lulav .carousel .thumbnails .cell {
+    float: left;
     width: 33%;
-    height: 128px;
+    height: 172px;
     background-position: center;
     cursor: pointer;
 }
 
-.lulav .thumbnails .cell .select {
+.lulav .carousel .thumbnails .cell .select {
     position: absolute;
-    border: 6px solid #e8776f;
+    border: 6px solid #E8776F;
 }
 
 .entry-content {
-    /*max-width: 95% !important;*/
+    max-width: 80% !important;
 }
