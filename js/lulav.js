@@ -46,9 +46,6 @@ function initialize() {
             if (!next.hasClass('active')) {
                 var collection = jQuery('.lulav .carousel .collection.active');
 
-                console.log(next);
-                console.log(collection);
-
                 next.addClass('animation');
                 next.css('left', -collection.width());
                 next.css('z-index', collection.css('z-index') + 50);
@@ -62,8 +59,8 @@ function initialize() {
             }
 
             jQuery('.lulav .cll .hselect').remove();
-            select.width(cell.width());
-            select.height(cell.height());
+            select.width(cell.width() - 6);
+            select.height(cell.height() - 6);
             cell.append(select);
 
             for (var id in infoWindows) {
@@ -89,8 +86,8 @@ function initialize() {
         var select = jQuery(document.createElement('div')).addClass('hselect');
 
         jQuery('.lulav .cll .hselect').remove();
-        select.width(cell.width());
-        select.height(cell.height());
+        select.width(cell.width() - 6);
+        select.height(cell.height() - 6);
         cell.append(select);
 
         //map.panTo(markers[id].getPosition());
