@@ -39,8 +39,8 @@ function initialize() {
         infoWindows[id] = infoWindow;
 
         marker.addListener('click', function () {
-            var cell = jQuery('.lulav .cell[data-id="' + this.id + '"]');
-            var select = jQuery(document.createElement('div')).addClass('select');
+            var cell = jQuery('.lulav .cll[data-id="' + this.id + '"]');
+            var select = jQuery(document.createElement('div')).addClass('hselect');
 
             var next = cell.parents('.thumbnails');
             if (!next.hasClass('active')) {
@@ -61,7 +61,9 @@ function initialize() {
                 });
             }
 
-            jQuery('.lulav .cell .select').remove();
+            jQuery('.lulav .cll .hselect').remove();
+            select.width(cell.width());
+            select.height(cell.height());
             cell.append(select);
 
             for (var id in infoWindows) {
@@ -71,7 +73,7 @@ function initialize() {
         });
     });
 
-    jQuery('.lulav .collection .cell').each(function () {
+    jQuery('.lulav .collection .cll').each(function () {
         var cell = jQuery(this);
 
         var thumbnail = cell.data('thumbnail');
@@ -81,12 +83,14 @@ function initialize() {
         }
     });
 
-    jQuery('.lulav .collection .cell').click(function () {
+    jQuery('.lulav .collection .cll').click(function () {
         var cell = jQuery(this);
         var id = cell.data('id');
-        var select = jQuery(document.createElement('div')).addClass('select');
+        var select = jQuery(document.createElement('div')).addClass('hselect');
 
-        jQuery('.lulav .cell .select').remove();
+        jQuery('.lulav .cll .hselect').remove();
+        select.width(cell.width());
+        select.height(cell.height());
         cell.append(select);
 
         //map.panTo(markers[id].getPosition());

@@ -38,7 +38,7 @@
     display: block;
 }
 
-.lulav .carousel .collection .line .cell {
+.lulav .carousel .collection .line .cll {
     position: relative;
     float: left;
     width: 33%;
@@ -49,22 +49,22 @@
     border-top: 0.5em solid #FFF;
 
 }
-.lulav .carousel .collection .line:first-child .cell {
+.lulav .carousel .collection .line:first-child .cll {
     border-top: none;
 }
 
-.lulav .carousel .collection .cell .border {
+.lulav .carousel .collection .cll .border {
     position: absolute;
     border: 6px solid #FFF;
     width: 100%;
     height: 100%;
 }
 
-.lulav .carousel .collection .cell .select {
+.lulav .carousel .collection .cll .hselect {
     position: absolute;
     border: 6px solid #E8776F;
-    width: 100%;
-    height: 100%;
+    /*width: 100%;
+    height: 100%;*/
 }
 
 .entry-content {

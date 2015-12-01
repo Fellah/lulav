@@ -14,7 +14,7 @@
 				<?php foreach ( $collection as $row ): ?>
 					<div class="line">
 						<?php foreach ( $row as $cell ): ?>
-							<div class="cell"
+							<div class="cll"
 							     data-id="<?php echo $cell['id']; ?>"
 							     data-thumbnail="<?php echo $cell['thumbnail']; ?>">
 							</div>
