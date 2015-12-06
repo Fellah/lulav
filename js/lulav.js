@@ -60,6 +60,8 @@ function lulavInitialize() {
             }
 
             jQuery('.llv-select', thumbs).remove();
+            select.width(cell.innerWidth());
+            select.height(cell.innerHeight());
             cell.append(select);
 
             for (var id in infoWindows) {
@@ -84,6 +86,8 @@ function lulavInitialize() {
         var select = jQuery(document.createElement('div')).addClass('llv-select');
 
         jQuery('.llv-select', thumbs).remove();
+        select.width(cell.innerWidth());
+        select.height(cell.innerHeight());
         cell.append(select);
 
         //map.panTo(markers[id].getPosition());
