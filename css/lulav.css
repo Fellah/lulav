@@ -1,72 +1,62 @@
-.lulav .controls {
+.lulav {
+    width: 100%;
+    height: 516px;
+}
+
+.lulav .llv-controls {
     text-align: right;
 }
-.lulav .controls a {
+
+.lulav .llv-controls a {
     color: #000;
     text-decoration: none;
 }
 
-.lulav .map {
+.lulav .llv-map, .lulav .llv-thumbs {
     float: left;
     width: 50%;
-    height: 516px;
+    height: 100%;
 }
 
-.lulav ul {
-    display: none;
-}
-
-.lulav .carousel {
+.lulav .llv-thumbs {
     position: relative;
-    float: left;
-    width: 50%;
-    height: 516px;
     overflow: hidden;
 }
 
-.lulav .carousel .collection {
-    position: absolute;
+.lulav .llv-thumbs table {
     z-index: 0;
+    position: absolute;
+    visibility: hidden;
     width: 100%;
     height: 100%;
-    display: none;
-    background-color: #FFF;
-}
-/*.lulav .carousel .collection:first-child,*/
-.lulav .carousel .collection.active,
-.lulav .carousel .collection.animation {
-    display: block;
+    border-collapse: collapse;
+    border-style: hidden;
+    border-left: 6px solid #FFF;
 }
 
-.lulav .carousel .collection .line .cll {
+.lulav .llv-thumbs table:first-child,
+.lulav .llv-thumbs table.active,
+.lulav .llv-thumbs table.animation {
+    visibility: visible;
+}
+
+.lulav .llv-thumbs td {
     position: relative;
-    float: left;
     width: 33%;
-    height: 172px;
-    background-position: center;
-    cursor: pointer;
-    border-left: 0.5em solid #FFF;
-    border-top: 0.5em solid #FFF;
-
-}
-.lulav .carousel .collection .line:first-child .cll {
-    border-top: none;
-}
-
-.lulav .carousel .collection .cll .border {
-    position: absolute;
     border: 6px solid #FFF;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lulav .llv-thumbs td .llv-desc {
+    display: none;
+}
+
+.lulav .llv-thumbs td .llv-select {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-}
-
-.lulav .carousel .collection .cll .hselect {
-    position: absolute;
     border: 6px solid #E8776F;
-    /*width: 100%;
-    height: 100%;*/
-}
-
-.entry-content {
-    max-width: 80% !important;
 }
